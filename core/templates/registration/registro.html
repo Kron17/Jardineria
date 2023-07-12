@@ -1,0 +1,50 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block css %}
+<style>
+  .boton-redondeado {
+    border-radius: 20px; /* Ajusta el valor de la esquina redondeada según tus preferencias */
+  }
+  .green-background {
+    background-color: rgba(223, 255, 223, 0);
+}
+.green-border {
+  border: 2px solid green;
+}
+</style>
+
+{% endblock %}
+{% block contenido %}
+<br><br><br><br>
+<section class="vh-10000" style="background-color: #ffffff;">
+  <div class="container py-5 h-100">
+    <div class="row d-flex justify-content-center align-items-center h-100">
+      <div class="col-12 col-md-8 col-lg-6 col-xl-5"> 
+        <div class="card shadow-2-strong green-border" style="border-radius: 1rem;">
+          <div class="card-body p-5 text-center green-background">
+            <h3 class="mb-5">Registro de Usuario</h3>
+            <form action="" method="POST">
+              {% csrf_token %}    
+              {{ form | crispy }}
+            
+              <!-- Checkbox -->
+              <div style="display: flex; flex-direction: column; gap: 10px;">
+                <input type="submit" value="Registrar" class="btn btn-success btn-lg btn-block boton-redondeado">
+                <div style="display: flex; justify-content: space-between;">
+                  <a href="{% url 'index' %}" class="btn btn-primary boton-pequeno boton-redondeado" style="max-width: 150px;">Ir al inicio</a>
+                  <a href="{% url 'login' %}" class="btn btn-primary boton-pequeno boton-redondeado" style="max-width: 150px;">Iniciar sesión</a>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<br><br><br><br>
+{% endblock %}
+{% block js %}
+
+{% endblock %}

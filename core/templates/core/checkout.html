@@ -1,0 +1,473 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %}
+<style>
+
+
+.shoping__checkout {
+	background: #f5f5f5;
+	padding: 30px;
+	padding-top: 20px;
+	margin-top: 50px;
+}
+
+.shoping__checkout h5 {
+	color: #1c1c1c;
+	font-weight: 700;
+	font-size: 20px;
+	margin-bottom: 28px;
+}
+
+.shoping__checkout ul {
+	margin-bottom: 28px;
+}
+
+.shoping__checkout ul li {
+	font-size: 16px;
+	color: #1c1c1c;
+	font-weight: 700;
+	list-style: none;
+	overflow: hidden;
+	border-bottom: 1px solid #ebebeb;
+	padding-bottom: 13px;
+	margin-bottom: 18px;
+}
+
+.shoping__checkout ul li:last-child {
+	padding-bottom: 0;
+	border-bottom: none;
+	margin-bottom: 0;
+}
+
+.shoping__checkout ul li span {
+	font-size: 18px;
+	color: #dd2222;
+	float: right;
+}
+
+.shoping__checkout .primary-btn {
+	display: block;
+	text-align: center;
+}
+
+/*---------------------
+  Checkout
+-----------------------*/
+
+.checkout {
+	padding-top: 80px;
+	padding-bottom: 60px;
+}
+
+.checkout h6 {
+	color: #999999;
+	text-align: center;
+	background: #f5f5f5;
+	border-top: 1px solid #6AB963;
+	padding: 12px 0 12px;
+	margin-bottom: 75px;
+}
+
+.checkout h6 span {
+	font-size: 16px;
+	color: #6AB963;
+	margin-right: 5px;
+}
+
+.checkout h6 a {
+	text-decoration: underline;
+	color: #999999;
+}
+
+.checkout__form h4 {
+	color: #1c1c1c;
+	font-weight: 700;
+	border-bottom: 1px solid #e1e1e1;
+	padding-bottom: 20px;
+	margin-bottom: 25px;
+}
+
+.checkout__form p {
+	column-rule: #b2b2b2;
+}
+
+.checkout__input {
+	margin-bottom: 24px;
+}
+
+.checkout__input p {
+	color: #1c1c1c;
+	margin-bottom: 20px;
+}
+
+.checkout__input p span {
+	color: #dd2222;
+}
+
+.checkout__input input {
+	width: 100%;
+	height: 46px;
+	border: 1px solid #ebebeb;
+	padding-left: 20px;
+	font-size: 16px;
+	color: #b2b2b2;
+	border-radius: 4px;
+}
+
+.checkout__input input.checkout__input__add {
+	margin-bottom: 20px;
+}
+
+.checkout__input input::placeholder {
+	color: #b2b2b2;
+}
+
+.checkout__input__checkbox {
+	margin-bottom: 10px;
+}
+
+.checkout__input__checkbox label {
+	position: relative;
+	font-size: 16px;
+	color: #1c1c1c;
+	padding-left: 40px;
+	cursor: pointer;
+}
+
+.checkout__input__checkbox label input {
+	position: absolute;
+	visibility: hidden;
+}
+
+.checkout__input__checkbox label input:checked~.checkmark {
+	background: #7fad39;
+	border-color: #7fad39;
+}
+
+.checkout__input__checkbox label input:checked~.checkmark:after {
+	opacity: 1;
+}
+
+.checkout__input__checkbox label .checkmark {
+	position: absolute;
+	left: 0;
+	top: 4px;
+	height: 16px;
+	width: 14px;
+	border: 1px solid #a6a6a6;
+	content: "";
+	border-radius: 4px;
+}
+
+.checkout__input__checkbox label .checkmark:after {
+	position: absolute;
+	left: 1px;
+	top: 1px;
+	width: 10px;
+	height: 8px;
+	border: solid white;
+	border-width: 3px 3px 0px 0px;
+	-webkit-transform: rotate(127deg);
+	-ms-transform: rotate(127deg);
+	transform: rotate(127deg);
+	content: "";
+	opacity: 0;
+}
+
+.checkout__order {
+	background: #f5f5f5;
+	padding: 40px;
+	padding-top: 30px;
+}
+
+.checkout__order h4 {
+	color: #1c1c1c;
+	font-weight: 700;
+	border-bottom: 1px solid #e1e1e1;
+	padding-bottom: 20px;
+	margin-bottom: 20px;
+}
+
+.checkout__order .checkout__order__products {
+	font-size: 18px;
+	color: #1c1c1c;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.checkout__order .checkout__order__products span {
+	float: right;
+}
+
+.checkout__order ul {
+	margin-bottom: 12px;
+}
+
+.checkout__order ul li {
+	font-size: 16px;
+	color: #6f6f6f;
+	line-height: 40px;
+	list-style: none;
+}
+
+.checkout__order ul li span {
+	font-weight: 700;
+	float: right;
+}
+
+.checkout__order .checkout__order__subtotal {
+	font-size: 18px;
+	color: #1c1c1c;
+	font-weight: 700;
+	border-bottom: 1px solid #e1e1e1;
+	border-top: 1px solid #e1e1e1;
+	padding-bottom: 15px;
+	margin-bottom: 15px;
+	padding-top: 15px;
+}
+
+.checkout__order .checkout__order__subtotal span {
+	float: right;
+}
+
+.checkout__order .checkout__input__checkbox label {
+	padding-left: 20px;
+}
+
+.checkout__order .checkout__order__total {
+	font-size: 18px;
+	color: #1c1c1c;
+	font-weight: 700;
+	border-bottom: 1px solid #e1e1e1;
+	padding-bottom: 15px;
+	margin-bottom: 25px;
+}
+
+.checkout__order .checkout__order__total span {
+	float: right;
+	color: #dd2222;
+}
+
+.checkout__order button {
+	font-size: 18px;
+	letter-spacing: 2px;
+	width: 100%;
+	margin-top: 10px;
+}
+
+
+
+
+	.shoping__checkout .primary-btn {
+		display: block;
+		text-align: center;
+		padding: 10px 15px 10px;
+	}
+	.map .map-inside {
+		-webkit-transform: translateX(-125px);
+		-ms-transform: translateX(-125px);
+		transform: translateX(-125px);
+	}
+	.map .map-inside .inside-widget {
+		width: 250px;
+	}
+	.product__details__tab .nav-tabs li {
+		margin-right: 15px;
+	}
+	.shoping__discount form input {
+		width: 100%;
+	}
+	.checkout__order {
+		padding: 20px;
+	}
+	.blog__details__hero__text h2 {
+		font-size: 24px;
+	}
+
+</style>
+{% endblock %}
+{% block contenido %}
+
+
+<br><br><br><br><br>
+
+
+<!-- Checkout Section Begin -->
+<section class="checkout spad">
+    <div class="container">
+        <div class="row">
+
+        </div>
+        <div class="checkout__form">
+            <h4>Detalles de envio</h4>
+            <form action="{% url 'checkout' %}" method="POST">
+                {% csrf_token %}
+                {{ form }}
+                <div class="row">
+                    <div class="col-lg-8 col-md-6">
+                        <div class="checkout__input">
+                            <p>nombre completo<span>*</span></p>
+                            <input type="text" name="nombre_completo" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Región<span>*</span></p>
+                            <input type="text" name="region" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Comuna<span>*</span></p>
+                            <input type="text" name="comuna" required>
+                        </div>
+                        <div class="checkout__input">
+                            <p>Direccion<span>*</span></p>
+                            <input type="text" placeholder="Calle/avenida" class="checkout__input__add"
+                                name="direccion" required>
+                            <input type="text" placeholder="Número casa / Número departamento (etc)"
+                                name="nro_casa_departamento" required>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Celular<span>*</span></p>
+                                    <input type="text" name="celular" required>
+                                </div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="checkout__input">
+                                    <p>Correo<span></span></p>
+                                    <input type="text" name="correo" >
+                                </div>
+                            </div>
+                        </div>
+                        <div class="checkout__input">
+                            <p>¿Quieres dejar un comentario?</p>
+                            <input type="text" placeholder="Notas sobre su pedido. Notas especiales para la entrega."
+                                name="comentario">
+                        </div>
+                    </div>
+                    <div class="col-lg-4 col-md-6">
+                        <div class="checkout__order">
+                            <h4>Tu pedido</h4>
+                            <div class="checkout__order__products">productos <span>Total</span></div>
+                            <ul>
+                                {% for producto in listarproductos %}
+                                <li>{{ producto.producto.nombre }} <span>${{ producto.total_producto }}</span></li>
+                                {% endfor %}
+                                {% if suscrito %}
+                                <div class="checkout__order__total">total <span>${{ total_precio }}</span></div>
+                                <div class="checkout__order__total">total con iva <span>${{ total_iva }}</span></div>   
+                                <div class="checkout__order__total">descuento <span>${{ descuento }}</span></div>                       
+                                <div class="checkout__order__total">Subtotal <span>${{ total_con_descuento }}</span></div> 
+                                <div class="checkout__order__total">Envio <span>Gratis</span></div>                                                           
+                                <div class="checkout__order__total">precio en dolares <span>${{ total_dolares }}</span></div>
+                                {% else %}
+                                <div class="checkout__order__total">total <span>${{ total_precio }}</span></div>              
+                                <div class="checkout__order__total">total con iva <span>${{ total_iva }}</span></div> 
+                                <div class="checkout__order__total">Envio <span>$5000</span></div>
+                                <div class="checkout__order__total">Total con envio <span>${{ total_envio }}</span></div>                             
+                                <div class="checkout__order__total">precio en dolares <span>${{ total_en_dolar }}</span></div>
+                                {% endif %}
+                            </ul>
+                            
+                            
+                            <a>
+                                <div id="btnPaypal"></div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block js %}
+<script src="http://www.paypalobjects.com/api/checkout.js"> </script>
+<script>
+    paypal.Button.render({
+        env: 'sandbox',
+        client: {
+            sandbox: 'AV23H57oF6-dHsC5vCRiIgAn35XqkpNCFl1lQbZ1RYYFw5bqkFH7P7K0Qq62TUye8Cl9lHhUVbCpXeyV',
+            production: 'demo_production_client_id'
+        },
+        locale: 'es_CL',
+        style: {
+            size: 'medium', //small, medium, large
+            color: 'gold',  //gold, black
+            shape: 'rect'   //pill, rect
+        },
+        commit: true,
+        payment: function (data, actions) {
+            return actions.payment.create({
+                transactions: [{
+                    amount: {
+                        total: '{{ total }}', //monto a pagar
+                        currency: 'USD'
+                    }
+                }]
+            });
+        },
+        onAuthorize: function (data, actions) {
+            return actions.payment.execute().then(function () {
+                // Obtener los datos del formulario
+                var formData = $('form').serialize();
+
+                // Enviar los datos a la vista de Django utilizando AJAX
+                $.ajax({
+                    url: '/checkout/',  // Reemplaza '/guardar_datos/' con la URL de tu vista Django que guarda los datos
+                    type: 'POST',
+                    data: formData,
+                    success: function (response) {
+                        Swal.fire({
+                            title: 'Transaccion',
+                            text: 'Pago realizado correctamente!',
+                            icon: 'success',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Aceptar'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                window.location.href = "/vaciar_carrito/";
+                            }
+                        });
+                    },
+                    error: function () {
+                        Swal.fire({
+                            title: 'Error Transaccion',
+                            text: 'Ha ocurrido un error en el pago!',
+                            icon: 'error',
+                            showCancelButton: false,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Aceptar'
+                        });
+                    }
+                });
+            });
+        },
+        onCancel(data) {
+            Swal.fire({
+                title: 'Transaccion Cancelada',
+                text: 'El pago ha sido cancelado!',
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar'
+            });
+        },
+        onError(err) {
+            Swal.fire({
+                title: 'Error Transaccion',
+                text: 'Ha ocurrido un error en el pago!',
+                icon: 'error',
+                showCancelButton: false,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Aceptar'
+            });
+        },
+    }, '#btnPaypal');
+</script>
+{% endblock %}

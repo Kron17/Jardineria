@@ -1,0 +1,104 @@
+{% extends 'core/base.html' %}
+{% load static %}
+{% block css %}
+<style>
+    body {
+      text-align: center;
+      padding: 40px 0;
+      background: #EBF0F5;
+    }
+      h1 {
+        color: #88B04B;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-weight: 900;
+        font-size: 40px;
+        margin-bottom: 10px;
+      }
+      p {
+        color: #404F5E;
+        font-family: "Nunito Sans", "Helvetica Neue", sans-serif;
+        font-size:20px;
+        margin: 0;
+      }
+    .card {
+      background: white;
+      padding: 60px;
+      border-radius: 4px;
+      box-shadow: 0 2px 3px #C8D0D8;
+      display: inline-block;
+      margin: 0 auto;
+    }
+</style>
+{% endblock %}
+{% block contenido %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <body>
+        <br><br><br><br>
+      <div class="card">
+      <div style="border-radius:200px; height:200px; width:200px; background: #F8FAF5; margin:0 auto;">
+        <i class="fa-regular bi bi-info-circle" style="color: #4bf21c; font-size: 200px;"></i>
+      </div>
+        <h1>Listo para la suscripcion</h1> 
+        <p>Solo debes pagar y estaras suscrito!</p>
+        <br>
+        <p><div id="btnPaypal"></div></p>
+      </div>
+    </body>
+</html>
+
+{% endblock %}
+
+{% block js %}
+<script src="http://www.paypalobjects.com/api/checkout.js"> </script>
+<script>
+  paypal.Button.render({
+    env: 'sandbox',
+    client: {
+      sandbox: 'AV23H57oF6-dHsC5vCRiIgAn35XqkpNCFl1lQbZ1RYYFw5bqkFH7P7K0Qq62TUye8Cl9lHhUVbCpXeyV',
+      production: 'demo_production_client_id'
+    },
+    locale: 'es_CL',
+    style: {
+      size: 'large',//small, medium, large
+      color: 'gold',//gold, black
+      shape: 'pill'//pill, rect
+    },
+    commit: true,
+    payment: function(data, actions){
+      return actions.payment.create({
+        transactions:[{
+          amount:{
+            total:'{{ 2 }}',//monto a pagar
+            currency: 'USD'
+          }
+        }]
+      });
+    },
+    onAuthorize: function(data, actions){
+      return actions.payment.execute().then(function(){
+        //aqui va todo lo que quiero que se ejecute despues del pago
+        Swal.fire({
+        title: 'Pago Realizado',
+        text: 'El pago ha sido realizado con exito',
+        icon: 'info',
+        showCancelButton: false,
+        confirmButtonColor: '#3085d6',
+        cancelButtonColor: '#d33',
+        confirmButtonText: 'Genial!'
+    }).then((result) => {
+        if (result.isConfirmed) {
+          window.location.href = "/subsAprobada"
+        }
+      });
+      });
+    },
+    onCancel(data){
+      
+    },
+    onError(err){
+
+    },
+  }, '#btnPaypal');
+</script>
+
+{% endblock %}
